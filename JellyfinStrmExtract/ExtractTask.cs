@@ -19,15 +19,15 @@ namespace JellyfinStrmExtract
     /// </remarks>
     /// <param name="libraryManager">Instance of the <see cref="ILibraryManager"/> interface.</param>
     /// <param name="providerManager">Instance of the <see cref="IProviderManager"/> interface.</param>
-    /// <param name="logger">Instance of the <see cref="ILogger"/> interface.</param>
+    /// <param name="loggerFactory">Instance of the <see cref="ILoggerFactory"/> interface.</param>
     /// <param name="fileSystem">Instance of the <see cref="IFileSystem"/> interface.</param>
     public class ExtractTask(
         ILibraryManager libraryManager,
         IProviderManager providerManager,
-        ILogger logger,
+        ILoggerFactory loggerFactory,
         IFileSystem fileSystem) : IScheduledTask
     {
-        private readonly ILogger _logger = logger;
+        private readonly ILogger _logger = loggerFactory.CreateLogger<ExtractTask>();
         private readonly ILibraryManager _libraryManager = libraryManager;
         private readonly IProviderManager _providerManager = providerManager;
         private readonly IFileSystem _fileSystem = fileSystem;
